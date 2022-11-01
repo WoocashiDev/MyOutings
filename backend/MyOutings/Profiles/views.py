@@ -53,11 +53,8 @@ def deleteProfile(request, pk):
 def createProfile(request):
 	data = request.data 
 	profile = Profile.objects.create(
-		title = data['title'],
-		place = data['place'],
-		date = data['date'],
-		participants = data['participants'],
-		costs = data['costs'],
+		user = data['user'],
+		nickname = data['nickname']
 	)
 	serializer = ProfileSerializer(profile, many=False)
 
