@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
 from .serializers import OutingSerializer
 from .models import Outing
-from backend.MyOutings.Outings import serializers
 
 # get all outings
 @api_view(['GET'])
