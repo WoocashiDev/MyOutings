@@ -6,6 +6,7 @@ class Outing(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     place = models.TextField(null=True, blank=True)
+    date = models.DateField()
     #participants to be set as a foreign key
     participants=models.IntegerField(null=True, blank="True")
     #costs will be a foreign key

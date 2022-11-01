@@ -1,7 +1,69 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import OutingSerializer
+from .models import Outing
+from backend.MyOutings.Outings import serializers
 
-# Create your views here.
+# get all outings
+@api_view(['GET'])
+def getOutings(request):
+	outings = Outing.objects.all().order_by('-updated')
+	serializer = OutingSerializer(outings, many=True)
+
+	return Response(serializer.data)
+
+
+# get single outing
+@api_view(['GET'])
+def getOuting(request, pk):
+	outing = Outing.objects.get(id=pk)
+	serializer = OutingSerializer(outing, many=False)
+
+	return Response(serializer.data)
+
+
+# update outing
+@api_view(['PUT'])
+def updateOuting(request, pk):
+	data = request.data
+	outing = Outing.objects.get(id=pk)
+	serializer = OutingSerializer(instance=outing, data=data)
+
+	if serializer.is_valid():
+		serializer.save()
+
+		return Response(serializer.data)
+
+
+# delete outing
+@api_view(['DELETE'])
+def deleteOuting(request, pk):
+	data = request.data
+	outing = Outing.objects.get(id=pk)
+	outing.delete()
+
+	return Response("outing was deleted")
+
+
+# create outing
+@api_view(['POST'])
+def createOuting(request):
+	data = request.data 
+	outing = Outing.objects.create(
+		title = data['title'],
+		place = data['place'],
+		date = data['date'],
+		participants = data['participants'],
+		costs = data['costs'],
+	)
+	serializer = OutingSerializer(outing, many=False)
+
+	return Response(serializer.data)
+
+# List of endpoints
+@api_view(['GET'])
 def getRoutes(request):
 	routes = [
 		{
