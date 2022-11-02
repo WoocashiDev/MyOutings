@@ -1,5 +1,6 @@
 from django.db import models
 from Profiles.models import Profile
+import uuid
 
 # Outing model - gathering data for each outing you and your friends have
 class Outing(models.Model):
@@ -9,6 +10,7 @@ class Outing(models.Model):
     place = models.CharField(max_length=200, null=True, blank=True)
     date = models.DateField()
     participants=models.ManyToManyField(Profile, blank=True )
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     
 
     def __str__(self):
@@ -23,6 +25,7 @@ class Expense(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     value = models.FloatField(null=True, blank=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return self.title[0:30]
