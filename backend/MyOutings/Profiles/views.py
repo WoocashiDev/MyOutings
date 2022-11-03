@@ -79,7 +79,10 @@ def getRoutes(request):
 		{
 		"Endpoint": "/profiles/create",
 		"method": "POST",
-		"body": {"body": ""},
+		"body": {
+			"nickname": "",
+			"user": "" 
+			},
 		"description": "Creates a new Profile with data sent in post request"
 		},
 		{
@@ -95,4 +98,4 @@ def getRoutes(request):
 		"description": "Deletes specific Profile object"
 		},
     ]
-	return JsonResponse(routes, safe=False)
+	return Response(routes)
