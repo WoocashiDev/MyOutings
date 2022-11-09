@@ -8,10 +8,11 @@ def createProfile(sender,instance, created, **kwargs):
     if created:
         user=instance
         print(user)
-        Profile.objects.create(
+        profile = Profile.objects.create(
             user = user,
-            nickname = user.username
+            nickname = user.username,
         )
+
     
 
 @receiver(post_delete, sender=Profile)

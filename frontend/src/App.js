@@ -7,7 +7,8 @@ import { AuthProvider } from "./context/AuthContext";
 import Home from "./views/homePage";
 import Login from "./views/loginPage";
 import Register from "./views/registerPage";
-import ProtectedPage from "./utils/ProtectedPage";
+import OutingsPage from "./views/outingsPage";
+import OutingPage from "./views/outingPage";
 
 function App() {
   return (
@@ -18,9 +19,14 @@ function App() {
           <Routes>
             <Route element={
               <PrivateRoute>
-                <ProtectedPage/>
+                <OutingsPage/>
               </PrivateRoute>
-            } path="/protected" exact />
+            } path="/outings" exact />
+            <Route element={
+              <PrivateRoute>
+                <OutingPage/>
+              </PrivateRoute>
+            } path="/outings/:id" exact />
             <Route element={<Login/>} path="/login" />
             <Route element={<Register/>} path="/register" />
             <Route element={<Home/>} path="/" />

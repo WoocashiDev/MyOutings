@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
 import { useContext } from 'react';
 import AuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
-function ProtectedPage() {
+function OutingsPage() {
   const [res, setRes] = useState("");
   const api = useAxios();
   const {user} = useContext(AuthContext)
@@ -30,7 +31,9 @@ function ProtectedPage() {
         <div key={key}>
           <h3>{item.title}</h3>
           <p>{item.place}</p>
-          <small>{ item.date}</small>
+          <small>{item.date}</small>
+          <p>Number of participants: {item.participants.length}</p>
+          <Link to={`/outings/${item.id}`}>Details</Link>
         </div>
         
       )):"loading"}
@@ -38,4 +41,4 @@ function ProtectedPage() {
   );
 }
 
-export default ProtectedPage;
+export default OutingsPage;
