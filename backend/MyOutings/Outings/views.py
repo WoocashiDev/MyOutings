@@ -12,8 +12,12 @@ from Profiles.models import Profile
 # get all outings
 @api_view(['GET'])
 def getOutings(request):
-	outings = Outing.objects.all().order_by('-updated')
+	user = request.user
+	profile = Profile.objects.get(user=user)
+	outings = Outing.objects.filter(participants=profile)
 	serializer = OutingSerializer(outings, many=True)
+	print(profile)
+	print(user)
 
 	return Response(serializer.data)
 

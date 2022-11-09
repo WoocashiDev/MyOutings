@@ -5,6 +5,8 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from Profiles.serializers import ProfileSerializer
+from Profiles.models import Profile
 
 
 # TOKEN PAIR SERIALIZER
@@ -13,9 +15,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
+        profile = Profile.objects.get(user=user)
+        profile_serializer = ProfileSerializer(profile, many=False)
 
         # Add custom claims
         token['username'] = user.username
+        token['id'] = user.id
+        token['profile'] = profile_serializer.data
 
         return token
 
@@ -26,7 +32,7 @@ class RegisterSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2')
+        fields = '__all__'
 
 
     def validate(self, attrs):
