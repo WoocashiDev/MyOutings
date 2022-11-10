@@ -2,28 +2,16 @@ import { useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
 import { useContext } from 'react';
 import AuthContext from "../context/AuthContext";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 function OutingPage() {
-  const [outing, setOuting] = useState("");
-  const api = useAxios();
+
   const { user } = useContext(AuthContext)
   const { id } = useParams()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get(`/outings/outings/${id}`);
-        console.log(response.data)
-        setOuting(response.data);
-      } catch {
-        setOuting("Something went wrong");
-      }
-    };
-    console.log(user)
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const location = useLocation()
+  const { outing } = location.state
+  
+  console.log(outing)
 
   return (
     <div>
@@ -44,8 +32,17 @@ function OutingPage() {
           <ul>
           {outing.expenses?outing.expenses.map((expense,key) => (
             <li key={key}>{expense.title} | cost: {expense.value} | paid by: {expense.paid_by.nickname} | paid for: { expense.paid_for.nickname }</li>
-          )):<li>No expenses added so far</li>}
+          ))
+            : <li>No expenses added so far</li>}
           </ul>
+          {outing.expenses ? <div>
+            <h4>Summary:</h4>
+            <ul>
+              <li>Total outing cost: <strong>{outing.totalExpense}</strong></li>
+              <li>You owe: <strong>{outing.owedByUser}</strong></li>
+              <li>Others owe to you: <strong>{outing.owedToUser}</strong></li>
+            </ul>
+          </div>:""}
         </div>
       </div>:"loading"}
     </div>
