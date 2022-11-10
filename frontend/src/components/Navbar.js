@@ -1,29 +1,29 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   return (
-    <nav>
-      <div>
-        <h1>App Name</h1>
-        <div>
-          {user ? (
-            <>
-              <Link to="/">Home</Link>
-              <Link to="/outings">Outings</Link>
-              <button onClick={logoutUser}>Logout</button>
-            </>
-          ) : (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
-            </>
-          )}
+      <div className="container">
+        <nav className="nav">
+          <span className="nav-logo">MyOutings</span>
+          <div>
+            {user ? (
+              <div className="nav-links">
+                <NavLink className={({isActive})=>isActive?"active nav-link":"nav-link"} to="/">Home</NavLink>
+                <NavLink className={({isActive})=>isActive?"active nav-link":"nav-link"} to="/outings">Outings</NavLink>
+                <button className="nav-button" onClick={logoutUser}>Logout</button>
+              </div>
+            ) : (
+              <div className="nav-links">
+                <NavLink className={({isActive})=>isActive?"active nav-link":"nav-link"} to="/login">Login</NavLink>
+                <NavLink className={({isActive})=>isActive?"active nav-link":"nav-link"} to="/register">Register</NavLink>
+              </div>
+            )}
+          </div>
+          </nav>
         </div>
-      </div>
-    </nav>
   );
 };
 

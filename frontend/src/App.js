@@ -1,4 +1,4 @@
-import './App.css';
+import './styles.css';
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -13,7 +13,7 @@ import OutingPage from "./views/outingPage";
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen overflow-hidden">
+      <div className="app">
         <AuthProvider>
           <Navbar />
           <Routes>
