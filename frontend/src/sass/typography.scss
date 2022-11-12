@@ -5,10 +5,22 @@
     font-family: 'Raleway', sans-serif;
 }
 
+@mixin font-secondary {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+@mixin font-three {
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: -2px;
+    font-weight: 300;
+}
+
 @mixin font-logo {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 32px;
     font-weight: 300;
+    text-decoration: underline;
+    letter-spacing: -2px;
 }
 
 .font-rules {
@@ -16,4 +28,27 @@
     font-family: 'Roboto', sans-serif;
     font-family: 'Roboto Condensed', sans-serif;
     font-family: 'Source Sans Pro', sans-serif;
+}
+
+.title-primary {
+    @include font-primary;
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: 300;
+    letter-spacing: -2px;
+    color: $color-light;
+}
+
+.title-secondary {
+    @include font-primary;
+        text-transform: uppercase;
+        color: $color-grey;
+        font-size: 20px;
+        line-height: 40px;
+}
+
+.data-primary {
+    @include font-secondary;
+        color: $color-primary;
+        font-weight: 800;
 }

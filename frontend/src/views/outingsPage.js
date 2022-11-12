@@ -56,22 +56,22 @@ function OutingsPage() {
   }, []);
 
   return (
-    <div>
-      <h1>Protected Page</h1>
+    <main>
+      <h1 className="title-primary">My all outings</h1>
+      <div className="cards gap-40">
       {outings ? outings.map((outing, key) => (
-        <div key={key}>
-          <h3>{outing.title}</h3>
-          <p>{outing.place}</p>
-          <small>{outing.date}</small>
-          <p>Number of participants: {outing.participants.length}</p>
-          <Link to={`/outings/${outing.id}`} state={{ outing: outing }}>Details</Link>
+        <div className="card gap-10" key={key}>
+          <h3 className="card-title">{outing.title}</h3>
+          <span className="card-date">{outing.date}</span>
+          <h4 className="title-secondary">Place: <span className="data-primary">{outing.place}</span></h4>   
+          <h4 className="title-secondary">Number of participants: <span className="data-primary">{outing.participants.length}</span></h4>
+          <span><Link className="card-button" to={`/outings/${outing.id}`} state={{ outing: outing }}>Details</Link></span>
           {outing.owedByUser ? <strong>You owe money! </strong> : ""}
-          {outing.owedToUser?<strong>Someone owes you money!</strong>:"" }
-          
+          {outing.owedToUser?<strong>Someone owes you money!</strong>:"" }    
         </div>
-        
-      )):"loading"}
-    </div>
+      )) : "loading"}
+        </div>
+    </main>
   );
 }
 

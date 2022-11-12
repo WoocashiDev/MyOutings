@@ -1,9 +1,11 @@
 
 const Footer = () => {
   return (
-    <div>
-      <h4>Created By You</h4>
-    </div>
+    <footer className="footer">
+      <div className="container">
+        <h4>Designed and coded with <span>❤</span> by © <span>Woocashi</span></h4>
+      </div>
+    </footer>
   );
 };
 

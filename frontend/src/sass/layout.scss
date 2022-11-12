@@ -1,22 +1,48 @@
 
 html {
-    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body {
     margin:0;
-    background: linear-gradient(90deg, rgb(63, 214, 245) 44%, rgba(0,194,255,1) 100%);
+    padding:0;
+}
+
+.app {
+    background: $background-primary;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    margin:0;
+    padding:0;
+    min-height:100vh;
+    position: relative;
+}
+
+
+main {
+    padding: 60px 0;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
 }
 
 .container {
+    position: relative;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 } 
+
 @media (min-width: 576px) {
     .container {
         width: 540px;
@@ -36,4 +62,20 @@ body {
     .container {
         width: 1140px;
     }
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.gap-40 {
+    gap: 40px;
 }

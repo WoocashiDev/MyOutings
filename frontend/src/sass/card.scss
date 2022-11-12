@@ -1,0 +1,139 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    justify-content: flex-start;
+}
+
+.card {
+    background-color: $background-light;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    padding: 20px;
+    @include font-secondary;
+    font-size: 18px;
+    -webkit-box-shadow: 8px 8px 24px -4px rgb(132, 136, 179);
+    -moz-box-shadow: 8px 8px 24px -4px rgb(132, 136, 179);
+    box-shadow: 8px 8px 24px -4px rgb(132, 136, 179);
+    color: $color-dark;
+
+    &-title {
+        @include font-three;
+        text-transform: uppercase;
+        color: $color-primary;
+        font-size: 30px;
+        margin-bottom:0px;
+        text-decoration: underline;
+    }
+
+    &-subtitle {
+        @include font-primary;
+        text-transform: uppercase;
+        color: $color-grey;
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    &-date {
+        @include font-secondary;
+        margin-top:0;
+        font-size: 14px;
+        font-weight: 500;
+        color: $color-grey;
+    }
+
+    &-participants {
+        display: flex;
+        gap: 10px;
+    }
+
+    &-participant {
+        display:flex;
+        position: relative;
+        color: $color-light;
+        background: $color-grey;
+        padding: 5px 10px;
+        align-items: center;
+        gap: 10px;
+        border-radius: 5px;
+
+        & button {
+            background: $color-dark;
+            color: $color-primary;
+            height: 18px;
+            width: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border:none;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    }
+
+    &-table {
+        border-spacing: 5px;
+        margin-left: -3px;
+        
+
+        & th,
+        & td {
+            padding: 5px 10px;
+            background-color: $color-grey;
+            border-radius: 5px;
+            justify-items: center;
+        }
+
+        & th {
+            background-color: $color-grey;
+            color: $color-light;
+            font-size: 30px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        & td {
+            background: $color-grey-light;
+            color: $color-dark;
+        }
+
+    }
+
+    &-button {
+        cursor: pointer;
+        background-color: $color-dark;
+        color: $color-primary;
+        padding: 3px 6px;
+        display: flex;
+        text-transform: uppercase;
+        border-radius: 5px;
+        max-width: fit-content;
+        text-decoration: none;
+
+        &-round {
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: $color-dark;
+            color: $color-primary;
+        }
+    }
+
+    &-summary {
+        list-style-type: none;
+    }
+
+    &-data {
+        @include font-secondary;
+        color: $color-primary;
+        font-weight: 800;
+    }
+}
