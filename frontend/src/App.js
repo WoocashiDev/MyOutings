@@ -27,10 +27,11 @@ function App() {
                 <OutingPage/>
               </PrivateRoute>
             } path="/outings/:id" exact />
+
             <Route element={<Login/>} path="/login" />
             <Route element={<Register/>} path="/register" />
             <Route element={<Home/>} path="/" />
-          </Routes>
+            </Routes>
         </AuthProvider>
         <Footer />
       </div>

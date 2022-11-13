@@ -8,6 +8,11 @@ class ExpenseSerializer(ModelSerializer):
     class Meta:
         model = Expense
         fields ='__all__'
+
+class ExpenseSerializerJoint(ModelSerializer):
+    class Meta:
+        model = Expense
+        fields ='__all__'
     
     paid_by = ProfileSerializer(many=False, source='sponsor')
     paid_for = ProfileSerializer(many=False, source='beneficient')
@@ -20,6 +25,6 @@ class OutingSerializer(ModelSerializer):
         fields ='__all__'
     
     profiles = ProfileSerializer(many=True, source='participants')
-    expenses = ExpenseSerializer(many=True, source='expense_set')
+    expenses = ExpenseSerializerJoint(many=True, source='expense_set')
     
     

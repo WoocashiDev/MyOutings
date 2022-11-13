@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .serializers import OutingSerializer, ExpenseSerializer
+from .serializers import OutingSerializer, ExpenseSerializer, ExpenseSerializerJoint
 from .models import Outing, Expense
 from Profiles.models import Profile
 
@@ -79,7 +79,7 @@ def createOuting(request):
 def getExpenses(request, pk):
 	outing = Outing.objects.get(id=pk)
 	expenses = outing.expense_set.all()
-	serializer = ExpenseSerializer(expenses, many=True)
+	serializer = ExpenseSerializerJoint(expenses, many=True)
 
 	return Response(serializer.data)
 
@@ -88,7 +88,7 @@ def getExpenses(request, pk):
 def getExpense(request, pk, expense_id):
 	outing = Outing.objects.get(id=pk)
 	expense = outing.expense_set.filter(id=expense_id).first()
-	serializer = ExpenseSerializer(expense, many=False)
+	serializer = ExpenseSerializerJoint(expense, many=False)
 
 	return Response(serializer.data)
 
@@ -96,6 +96,7 @@ def getExpense(request, pk, expense_id):
 @api_view(['PUT'])
 def updateExpense(request, pk, expense_id):
 	data = request.data
+	print(data)
 	outing = Outing.objects.get(id=pk)
 	expense = outing.expense_set.filter(id=expense_id).first()
 	serializer = ExpenseSerializer(instance=expense, data=data)

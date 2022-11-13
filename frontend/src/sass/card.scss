@@ -107,12 +107,14 @@
         cursor: pointer;
         background-color: $color-dark;
         color: $color-primary;
-        padding: 3px 6px;
+        padding: 6px 12px;
         display: flex;
         text-transform: uppercase;
         border-radius: 5px;
         max-width: fit-content;
         text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
 
         &-round {
             border-radius: 50%;

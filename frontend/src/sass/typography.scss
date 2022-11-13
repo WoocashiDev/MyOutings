@@ -47,8 +47,23 @@
         line-height: 40px;
 }
 
+.title-small {
+    @include font-primary;
+        color: $color-primary;
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 18px;
+        margin-right: 20px;
+}
+
 .data-primary {
     @include font-secondary;
         color: $color-primary;
         font-weight: 800;
+}
+
+.text-primary {
+    @include font-secondary;
+    color: $color-dark;
+    font-size: 18px;
 }
